@@ -1,0 +1,56 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col12">
+            <p class="text-center">
+              Para visualizar los resultados de la consulta, a continuacion seleccione un municipio
+            </p>
+         </div>
+    </div>
+  <div class="row">
+    <div class="col-6">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-success" id="dropdownBasic1" ngbDropdownToggle>{{municipio}}</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="scrollVertical">
+          <button class="dropdown-item" *ngFor="let municipioSelecionado of _ds.municipios"
+                  (click)="ChangeMunicipioSelecionado(municipioSelecionado)">{{municipioSelecionado}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    .
+  </div>
+
+  <div class="row">
+    <div class="card-deck">
+    <div class="card">
+      <div class="card-block">
+        <table class="table table-sm table-success table-bordered">
+          <tr class="thead-light" *ngFor="let data of _ds.votacion_municipios">
+            <th scope="col" *ngFor="let dat of data">
+              <h5>Pregunta {{dat['gen']['cpr']}}</h5>
+            </th>
+          </tr>
+          <tr  *ngFor="let data of _ds.votacion_municipios">
+            <th scope="row" style="text-decoration: none" *ngFor="let dat of data">
+              <p *ngFor="let da of dat['vot']">
+                {{da['dga']}}: {{da['vga']}}
+              </p>
+              <p>
+                Validos: {{dat['gen']['vva']}}  <br>
+                Nulos: {{dat['gen']['vnu']}} <br>
+                No marcados: {{dat['gen']['tnm']}} <br>
+                TOTALES: {{dat['gen']['tot']}} <br>
+              </p>
+            </th>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
+
+</div>
